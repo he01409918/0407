@@ -47,8 +47,7 @@ public class Gun : MonoBehaviour
 
     public void OnFire()
     {
-        GameObject newMuzzleFlashes = Instantiate(bullet, firePoint.position, firePoint.rotation);
-        newMuzzleFlashes.GetComponent<Rigidbody>().AddForce(firePoint.forward * bulletSpeed, ForceMode.Impulse);
-        Destroy(newMuzzleFlashes, 3f);
+        GameObject newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+        newBullet.GetComponent<Rigidbody>().AddForce(firePoint.forward * bulletSpeed, ForceMode.Impulse);
     }
 }
