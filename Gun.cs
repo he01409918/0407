@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,10 +10,10 @@ public class Gun : MonoBehaviour
     public Transform firePoint;
 
     [Header("射擊間隔")]
-    public float fireTime;
+    public float fireTime = 0.2f;
 
     [Header("子彈速度")]
-    public float bulletSpeed;
+    public float bulletSpeed = 20f;
 
     private float currentFireTime;
 
