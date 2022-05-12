@@ -26,8 +26,10 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        isFire = Input.GetKey(KeyCode.Space);
-
+        if (Application.isEditor)
+        {
+            isFire = Input.GetKey(KeyCode.Space);
+        }
 
         if (isFire)
         {
