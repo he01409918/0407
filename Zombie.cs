@@ -43,6 +43,7 @@ public class Zombie : MonoBehaviour
             hp -= value;
             if (hp <= 0)
             {
+                GameCore.Instance.OnKill();
                 nav.speed = 0;
                 animator.Play("Die");
                 Destroy(GetComponent<Collider>());
