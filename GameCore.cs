@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameCore : MonoBehaviour
 {
@@ -13,15 +14,30 @@ public class GameCore : MonoBehaviour
     public Transform[] zombiePoint;
     [Header("生成殭屍間隔")]
     public float nextZombieTime = 5;
+    [Header("擊殺數文本")]
+    public Text killCountText;
+
+    private int currentKillCount;
+
     private void Start()
     {
         Instance = this;
         InitZombie();
+        UpdateKillText(0);
     }
     public void InitZombie()
     {
         GameObject newZombie = Instantiate(zombie, zombiePoint[Random.Range(0, zombiePoint.Length)].position, zombie.transform.rotation);
         Invoke(nameof(InitZombie), nextZombieTime);
     }
+    public void OnKill()
+    {
+        currentKillCount++;
+        UpdateKillText(currentKillCount);
 
+    }
+    private void UpdateKillText(int value)
+    {
+        killCountText.text = $"擊殺數 : {value}";
+    }
 }
