@@ -7,7 +7,8 @@ public class Zombie : MonoBehaviour
 {
     private Animator animator;
     private NavMeshAgent nav;
-
+    [Header("血量")]
+    public float hp = 100;
     void Start()
     {
         nav = GetComponent<NavMeshAgent>();
@@ -22,7 +23,10 @@ public class Zombie : MonoBehaviour
 
     private void Movement()
     {
-        nav.SetDestination(GameCore.Instance.player.position);
+        if (hp > 0)
+        {
+            nav.SetDestination(GameCore.Instance.player.position);
+        }
     }
     private void CheckAnimator()
     {
@@ -30,6 +34,17 @@ public class Zombie : MonoBehaviour
         if (distance <= nav.stoppingDistance)
         {
             animator.SetBool("Attack", true);
+        }
+    }
+    public void GetHit(float value)
+    {
+        if (hp > 0)
+        {
+            hp -= value;
+            if (hp <= 0)
+            {
+                animator.Play("Die");
+            }
         }
     }
 }
